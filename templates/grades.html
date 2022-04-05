@@ -1,0 +1,64 @@
+{% extends "template.html" %}
+
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+   
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='grades.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>My Grades</title>
+</head>
+{% endblock %}
+
+    {% block content %}
+    <section id = "sub1" class = "subsection">
+        <h1 class = "main-title">MY GRADES</h1>
+        <div class="card-container">
+            
+            <div class="cards">
+                <div class="content">
+                    <h2>CSCB20 Grades</h2>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h3><strong> {{ message }} </strong></h3>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}  
+                    <table class = "my_table">
+                        <tr>
+                            <th class = "top-left">Assignment Name</th>
+                            <th>Score</th>
+                            <th>Out of</th>
+                            <th>Mark</th>
+                            <th class = "top-right">Weighting</th>
+                            
+                        </tr>
+
+                        {% for Assessments in query_assessment_result %}
+                        <tr>
+                          <td> {{ Assessments.assignmentName }}</td>
+                          <td> {{ Assessments.score }}</td>
+                          <td> {{ Assessments.out_of }}</td>
+                          <td> {{ Assessments.mark }}%</td>
+                          <td> {{ Assessments.weighting }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <a class = 'remark' href="{{ url_for('remark') }}" >Click Here To Request a Regrade</a>
+                </div>
+            </div>
+
+            
+          
+        </div>
+    </section>
+    {% endblock %}

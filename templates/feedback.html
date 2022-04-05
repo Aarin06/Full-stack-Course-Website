@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='feedback.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <script src="../static/script.js"> </script>
+
+    <title>Feedback</title>
+</head>
+{% endblock %}
+
+    {% block content %}
+    <section id = "sub1" class = "subsection">
+        <h1 class = "main-title">FEEBACK</h1>
+        <div class="card-container">
+            <div id = "form" class="cards">
+                <div class="content">
+                    <h2>Feedback Form</h2>
+                    <h3>Please let us know how we can improve this course! </h3>
+                    <form id="remark_request_form" action ="http://127.0.0.1:5000/feedback" method = "post">
+                        <select id="type" name="username" required>  
+                            <option value="">Select Instructor</option>
+                            {% for User in all_instructors %}
+                            <option value="{{ User.username }}">{{ User.first }} {{ User.last }}</option>
+                            {% endfor %}
+                        </select>
+                        <textarea id="review" placeholder="Type here" maxlength="600" name = "feedback" required ></textarea>
+                        <button type="submit">Send Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>   
+    {% endblock %}

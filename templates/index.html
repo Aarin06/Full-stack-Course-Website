@@ -1,0 +1,85 @@
+{% extends "template.html" %}
+
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+ 
+    <title>CSCB20 Home</title>
+</head>
+{% endblock head %}  
+
+    {% block content %}
+    <section id = "welcome-section" class = "section">
+        <img id = "main-image" src="{{ url_for('static', filename='images/mainpic.png') }}" alt="front+back end">
+        <h1 id = welcome-title>Welcome to CSCB20: <br>
+            Introduction to Web Development and SQL</h1>
+    </section>
+
+    <!--For Students-->
+    {% if session.person %}
+    <section id = "sub3" class = "subsection">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <h1 class = "subtitle"><strong>Welcome Back {{ session.person[2] }} {{ session.person[3] }} You are {{ message }} </strong></h1>
+                    {% endfor %}
+                {% else %}
+                    <h1 class = "subtitle"><strong>Welcome {{ session.person[2] }} {{ session.person[3] }} to the CSCB20 Course Website!</strong></h1>
+                {% endif %}
+            {% endwith %}
+
+        {% if session.person[1] == 'student' %}
+            <h1>To view your grades, click the button below:</h1>
+            <div class="options">
+                <a class = "button" id = "grades" href= "{{ url_for('grades') }}">View Grades Here</a>  
+            </div>  
+        {% endif %}   
+        {% if session.person[1] == 'instructor' %}
+            <h1>To view the class performance, or view anonymous feedback, use the options below:</h1>
+            <div class="options">
+                <a class = button id = "class-grades" href= "{{ url_for('studentGrades') }}">View Class Grades Here</a> 
+                <a class = button id = "feedback" href= "{{ url_for('viewfeedback') }}">View Anonymous Feeback Here</a> 
+            </div>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <!--For Instructors-->
+   
+    <section id = "sub1" class = "subsection">
+        <h1 id = "calendar-title" class = "subtitle"><strong>Calendar</strong></h1>
+            <div class="frame">
+                <iframe src="https://calendar.google.com/calendar/embed?src=ifjh54m7dpnpt7pt09bi1ggj64%40group.calendar.google.com&ctz=America%2FToronto" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <a id = "download" href= "https://calendar.google.com/calendar/ical/ifjh54m7dpnpt7pt09bi1ggj64%40group.calendar.google.com/public/basic.ics">Download Calendar</a>
+        </div>
+        
+    </section>
+  
+    <section id = "sub2" class = "subsection">
+        <h1 class = "subtitle"><strong>Instructor Information</strong></h1>    
+        <div class="card-container">
+            <div class="cards">
+                <div class="content">   
+                    <h2>Professor: Dr. Purva R. Gawde</h2>       
+                    <p><span class="strong">Email: </span><a href="mailto:purva.gawde@utoronto.ca">purva.gawde@utoronto.ca</a></p>
+                    <p><span class="strong">Office Hours:</span> Tuesday 10:00AM to 11:00AM @ IC 484 (or by appointment)</p>
+                    <p><span class="strong">Faculty Website:</span> <a href="https://www.utsc.utoronto.ca/cms/computer-science-1"
+                            target="blank_">https://www.utsc.utoronto.ca/cms/computer-science-1</a></p>
+                    <p><span class="strong">Piazza Discussion forum:</span> <a href="https://piazza.com/class/kxj5alixpjg4ft"
+                            target="blank_">https://piazza.com/class/kxj5alixpjg4ft</a></p>
+                    <p><span class="strong">MarkUs:</span> <a href="https://markus.cdf.toronto.edu/csc309-2016-01/?locale=en"
+                            target="blank_">https://markus.utsc.utoronto.ca/cscb20w22/assignments</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}    
