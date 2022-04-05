@@ -7,9 +7,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///uoft.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 10)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-
 class User(db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key = True)
@@ -84,7 +84,6 @@ def login():
 @app.route('/index')
 def index():
     pagename = 'home'
-    print(session)
     return render_template('index.html', pagename = pagename)
 
 @app.route('/lectures')
