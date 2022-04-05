@@ -25,7 +25,7 @@
                     <h2>Regrade Form</h2>
                     
                     <h3>Please choose the assessment for regrading and explain your reasoning. </h3>
-                    <form id="remark_request_form" action ="http://127.0.0.1:5000/remark" method = "post">
+                    <form id="remark_request_form" action ="/remark" method = "post">
                         <select id="type" name="assignment">  
                             <option value="invalid">Select Assignment for Regrading</option>
                             {% for Assessments in query_assessment_result %}

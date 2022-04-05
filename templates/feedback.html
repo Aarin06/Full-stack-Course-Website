@@ -24,7 +24,7 @@
                 <div class="content">
                     <h2>Feedback Form</h2>
                     <h3>Please let us know how we can improve this course! </h3>
-                    <form id="remark_request_form" action ="http://127.0.0.1:5000/feedback" method = "post">
+                    <form id="remark_request_form" action ="/feedback" method = "post">
                         <select id="type" name="username" required>  
                             <option value="">Select Instructor</option>
                             {% for User in all_instructors %}
