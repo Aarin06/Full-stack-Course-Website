@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 app.config['SECRET_KEY'] = 'secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///uoft.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 10)
@@ -179,7 +179,7 @@ def register():
         )
         add_user(reg_details)
         flash('Registration Successful! Please login now:')
-        return redirect(url_for('login.html'))
+        return redirect(url_for('login'))
 
 @app.route('/studentGrades', methods = ['GET', 'POST'])
 def studentGrades():
