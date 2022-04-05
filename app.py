@@ -179,7 +179,7 @@ def register():
         )
         add_user(reg_details)
         flash('Registration Successful! Please login now:')
-        return redirect(url_for('login'))
+        return redirect(url_for('login.html'))
 
 @app.route('/studentGrades', methods = ['GET', 'POST'])
 def studentGrades():
