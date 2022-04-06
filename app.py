@@ -185,10 +185,67 @@ def register():
 def studentGrades():
     
     if request.method == 'GET':
-        query_assessment_result= query_assessment()
+        query_assessment_result = query_assessment()
         print(query_assessment_result)
     
         return render_template('studentGrades.html',query_assessment_result = query_assessment_result)
+
+@app.route('/instructRemark', methods = ['GET', 'POST'])
+def instructRemark():
+    if request.method == 'GET':
+        query_assessment_result= query_assessment()
+        print(query_assessment_result)
+        return render_template('instructRemark.html',query_assessment_result = query_assessment_result)
+    else:
+        sUsername = request.form['sUsername']
+        sAssignment = request.form['sAssignment']
+        user = [
+            sUsername,
+            sAssignment
+        ]
+
+        return redirect(url_for('remarkAGrade', user = user))
+
+@app.route('/remarkAGrade/<user>', methods = ['GET', 'POST'])
+def remarkAGrade(user):
+    if request.method == 'GET':
+        
+        user = user.split(",")
+
+        user[0] = user[0].strip("[]'' ")
+        user[1] = user[1].strip("[]'' ")
+       
+        arr = [user[0], user[1]]
+        query_assignment_result = query_assignment_user(arr[0], arr[1])
+    
+        return render_template('remarkAGrade.html', query_assignment_result = query_assignment_result)
+    else:
+        username = request.form['username']
+        assignmentName = request.form['assignment']
+        score = float(request.form['score'])
+        
+        out_of = float(request.form['out_of'])
+
+        mark = round((score/out_of)*100, 2)
+        
+        weighting = request.form['weighting']
+        regrade = request.form['remark']
+
+        grade_details = (
+            assignmentName,
+            score,
+            out_of,
+            mark,
+            weighting,
+            username,
+            regrade
+        )
+        change_grades(grade_details)
+        message = username + "'s grade for "+ assignmentName +" has been changed!"
+        flash(message)
+       
+        return redirect(url_for('studentGrades'))
+
 
 @app.route('/grades', methods = ['GET', 'POST'])
 def grades():
@@ -256,11 +313,12 @@ def query_assessment():
     print(user)
     if (user[1] == 'instructor'): 
         query_assessment = Assessments.query.all()
+
         sorting(query_assessment)
+
     else:
         query_assessment = Assessments.query.filter_by(student_username = user[0])
-    print(query_assessment)
-    
+   
     return query_assessment
 
 def query_feedback():
@@ -280,11 +338,35 @@ def query_student_user():
     query_student = User.query.filter_by(type = 'student')
     return query_student
 
+def query_assignment_user(sUsername, sAssignment):
+ 
+    query_assignment_user = Assessments.query.all()
+    print(sAssignment)
+    query_assignment_user = (Assessments.query.filter_by(assignmentName = sAssignment, student_username = sUsername))
+    
+    return query_assignment_user
+
 def add_grades(grade_details):
     grade = Assessments(assignmentName = grade_details[0], score = grade_details[1], out_of = grade_details[2], mark = grade_details[3], weighting = grade_details[4], student_username = grade_details[5], regrade = "")
     db.session.add(grade)
     db.session.commit()
     print('success')
+
+def change_grades(grade_details):
+    changeGrade = 0
+    query_rows = Assessments.query.all()
+    for rows in query_rows:
+        if (rows.assignmentName == grade_details[0] and rows.student_username == grade_details[5]):
+            changeGrade = rows
+    print("\n\n\n")
+    print(changeGrade)
+    print("\n\n\n")
+    changeGrade.score = grade_details[1]
+    changeGrade.out_of = grade_details[2]
+    changeGrade.mark = grade_details[3]
+    changeGrade.weighting = grade_details[4]
+    changeGrade.regrade = "resolved " + grade_details[6]
+    db.session.commit()
 
 def add_user(reg_details):
     person = User(username = reg_details[0], utorid = reg_details[6], first = reg_details[4], last = reg_details[5], email = reg_details[1], password = reg_details[2], type = reg_details[3])
