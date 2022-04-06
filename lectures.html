@@ -1,0 +1,127 @@
+{% extends "template.html" %}
+
+{% block head %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='lectures.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>Lectures</title>
+</head>
+{% endblock %}
+
+    {% block content %}
+    <section id = "sub1" class = "subsection">
+        <h1 class = "main-title">LECTURES</h1>
+    <div class="card-container">
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 1</h2>
+                <h3>Introduction</h3>
+                <p>W5H of Databases, What are Web Applications? <br> Intro to RA</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+            
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 2</h2>
+                <h3>Relational Algebra</h3>
+                <p>Relational Diagrams,<br> Operations, and Algebra</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 3</h2>
+                <h3>RA and Introduction to SQL</h3>
+                <p>Relational Algebra Examples, What is SQL?<br> Mapping from Relational Algebra to SQL</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 4</h2>
+                <h3>SQL</h3>
+                <p>More query commands, Creating tables, setting constraints,
+                Inserting and updating tables,
+                Creating views,
+                Joins,
+                NULL values</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 5</h2>
+                <h3>SQL and Introduction to Web Development</h3>
+                <p>SQL Case & Subqueries
+                Introduction to Web development with Frontend, Backend, and an Intro to HTML</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 6</h2>
+                <h3>Introduction to Flask, Introduction to HTML and CSS</h3>
+                <p>What is Flask? Why do we use it? and What is web development architecture?</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>READING WEEK</h2>
+                <h3>HTML Forms, CSS Box Model, Flexbox, Grid</h3>
+                <p>Review Previous Week's material.</p>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 8</h2>
+                <h3>MID-TERM EXAM</h3>
+                <p>Evaluation on Relational Algebra and SQL</p>
+                <a href="../sample/Sample.pdf" class="button"> Solutions</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 9</h2>
+                <h3>Media Queries and JavaScript</h3>
+                <p>Media Feature Rules, Logical operators, Choosing breakpoints<br>JS Grammar, Logic, Control, Events</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 10</h2>
+                <h3>SQLite and Flask</h3>
+                <p>SQLAlchemy, ORM, and Setup</p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <!-- TBA Overlay for the next weeks?? -->
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 11</h2>
+                <h3>Flask and SQL Continued</h3>
+                <p></p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="content">
+                <h2>WEEK 12</h2>
+                <h3>Wrap-up</h3>
+                <p></p>
+                <a href="../sample/SampleSlides.pptx" class="button"> Click Here for Lecture Slides</a>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
