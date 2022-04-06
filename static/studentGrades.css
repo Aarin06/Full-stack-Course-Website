@@ -107,11 +107,11 @@ header{
     transition: 1s ease;
 }
 
-#button{
-    font-size: 150%;
+.button{
+    font-size: 100%;
     margin-top: 0px;
     background-color: lightcoral;
-    
+    border-radius: 10px;
     text-align: center;
 
 
