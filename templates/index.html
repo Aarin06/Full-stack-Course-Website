@@ -29,7 +29,7 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <h1 class = "subtitle"><strong>Welcome Back {{ session.person[2] }} {{ session.person[3] }}! <br> You are {{ message }} </strong></h1>
+                        <h1 class = "subtitle"><strong>Welcome Back {{ session.person[2] }} {{ session.person[3] }}! You are {{ message }} </strong></h1>
                     {% endfor %}
                 {% else %}
                     <h1 class = "subtitle"><strong>Welcome {{ session.person[2] }} {{ session.person[3] }} to the CSCB20 Course Website!</strong></h1>
