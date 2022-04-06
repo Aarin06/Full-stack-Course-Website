@@ -1,0 +1,59 @@
+{% extends "template.html" %}
+
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+   
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='studentGrades.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>Student Grades</title>
+</head>
+{% endblock %}
+
+    {% block content %}
+    <section id = "sub1" class = "subsection">
+        <h1 class = "main-title">REMARK REQUESTS</h1>
+        <div class="card-container">
+            
+            <div class="cards">
+                <div class="content">
+                    <h2>CSCB20 Remark Requests</h2>
+                    <table class = "my_table">
+                        <tr>
+                            <th class = "top-left">Student Username</th>
+                            <th>Assignment Name</th>
+                            <th>Mark</th>
+                            <th id = "long" >Request Details</th>
+                            <th class = "top-right">Request Details</th>
+                          </tr>
+                          {% for Assessments in query_assessment_result %}
+                            {% if Assessments.regrade != ""  %}
+                                {% if "resolved" not in Assessments.regrade %}
+                                    <tr>
+                                        <form action ="/instructRemark" method = "post">
+                                            <td><input type="hidden" name = "sUsername" id = "sUsername" value = "{{ Assessments.student_username }}" > {{ Assessments.student_username }}</td>
+                                            <td><input type="hidden" name = "sAssignment" value = "{{ Assessments.assignmentName }}"> {{ Assessments.assignmentName }}</td>
+                                            <td name = "sMark" value = "Assessments.mark"> {{ Assessments.mark }}%</td>
+                                            <td name = "sRegrade" value = "Assessments.regrade"> {{ Assessments.regrade }}</td>
+                                            <td><button class = "button" type="submit"> Resolve</button></td>
+                                        </form>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+       
+    </section>
+    {% endblock %}

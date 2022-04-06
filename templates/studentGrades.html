@@ -58,31 +58,8 @@
                 </div>
             </div>
 
-            <div class="cards">
-                <div class="content">
-                    <h2>CSCB20 Remark Requests</h2>
-                    <table class = "my_table">
-                        <tr>
-                            <th class = "top-left">Student Username</th>
-                            <th>Assignment Name</th>
-                            <th>Mark</th>
-                            <th id = "long" class = "top-right">Request Details</th>
-                          </tr>
-                          {% for Assessments in query_assessment_result %}
-                            {% if Assessments.regrade != "" %}
-                            <tr>
-                                <td> {{ Assessments.student_username }}</td>
-                                <td> {{ Assessments.assignmentName }}</td>
-                                <td> {{ Assessments.mark }}%</td>
-                                <td> {{ Assessments.regrade }}</td>
-                            </tr>
-                            {% endif %}
-                          {% endfor %}
-                    </table>
-                </div>
-            </div>
             <div class="content">
-                <a href="{{ url_for('addgrades') }}" id="button">Click Here to add Grades</a>
+                <a href="{{ url_for('addgrades') }}" class="button">Click Here to add Grades</a>
             </div>  
         </div>
        

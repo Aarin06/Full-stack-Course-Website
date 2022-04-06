@@ -19,7 +19,8 @@
                 {% endif %}
                 {% if session.person[1] == 'instructor' %}
                 <li><a href="{{ url_for('viewfeedback') }}">View Feedback</a></li> 
-                <li id = "special" ><a href="{{ url_for('studentGrades') }}">Class Grades</a></li>
+                <li><a href="{{ url_for('instructRemark') }}">Remark Requests</a></li> 
+                <li><a href="{{ url_for('studentGrades') }}">Class Grades</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
